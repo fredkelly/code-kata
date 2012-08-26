@@ -1,4 +1,10 @@
 class Kata
+  
+  # the ruby builtin
+  def self.chop_ruby(needle, haystack)
+    haystack.index(needle) || -1
+  end
+  
   # Most simple iterative example.
   def self.chop_one(needle, haystack)
     haystack.each_with_index do |val, index|
@@ -32,7 +38,7 @@ class Kata
       # lower half
       if haystack[mid] > needle
         return chop_two(needle, haystack, min, mid - 1)
-      # uppser half
+      # upper half
       elsif haystack[mid] < needle
         return chop_two(needle, haystack, mid + 1, max)
       # found!
@@ -42,7 +48,37 @@ class Kata
     end
   end
   
+  # add to a hash, no faster than linear
+  # however more efficient for multiple lookups.
+  def self.chop_three(needle, haystack)
+    @hash = {}
+    haystack.each_with_index do |val, index|
+      @hash[val] = index
+    end
+    return @hash[needle] || -1
+  end
+  
+  # iterative binary search
+  # does not work with missing values?
+  def self.chop_four(needle, haystack)
+    min = 0; max = haystack.size
+    while min < max
+      mid = (min + max) / 2
+      # lower half
+      if haystack[mid] > needle
+        max = mid - 1
+      # upper half
+      elsif haystack[mid] < needle
+        min = mid + 1
+      # found!
+      else
+        return mid
+      end
+    end
+    return -1
+  end
+  
   class << self
-    alias_method :chop, :chop_two
+    alias_method :chop, :chop_three
   end
 end
