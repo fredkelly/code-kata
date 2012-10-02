@@ -22,7 +22,7 @@ def sqrt_1(n)
   ta
 end
 
-def multiply(a, b)
+def multiply_0(a, b)
   ca = to_i_a(a)
   cb = to_i_a(b)
   n = ca.size + cb.size + 1
@@ -71,8 +71,6 @@ def to_i_a(i)
   i.scan(/.{1}/).map!(&:to_i)
 end
 
-puts Math.sqrt(34534)
-puts sqrt_0(34534)
-puts sqrt_1(34534)
-puts 746 * 245
-puts multiply('746', '245')
+#puts Math.sqrt(34534)
+#puts sqrt_0(34534)
+#puts sqrt_1(34534)
