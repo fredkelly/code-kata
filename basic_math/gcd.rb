@@ -1,8 +1,7 @@
 def gcd0(a, b)
   return a if a == b
-  s = [a, b].sort
-  m = s.last - s.first
-  gcd0(m, s.first)
+  min, max = [a, b].sort
+  gcd0(max - min, min)
 end
 
 def gcd1(a, b)
